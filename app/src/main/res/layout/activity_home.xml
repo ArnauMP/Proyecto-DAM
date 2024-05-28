@@ -32,7 +32,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         android:text="Ejercicios"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,8 +119,8 @@
         app:srcCompat="@color/black"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/textView9"
+    <Button
+        android:id="@+id/vipButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
