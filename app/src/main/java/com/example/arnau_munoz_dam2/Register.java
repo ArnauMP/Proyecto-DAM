@@ -211,5 +211,4 @@ public class Register extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-
 }
