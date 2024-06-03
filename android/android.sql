@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2024 a las 18:56:59
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2024 at 08:56 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,32 +18,33 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `android`
+-- Database: `android`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `diets`
+-- Table structure for table `diets`
 --
 
 CREATE TABLE `diets` (
-  `breakfast` varchar(50) NOT NULL,
-  `lunch` varchar(50) NOT NULL,
-  `snack` varchar(50) NOT NULL,
-  `dinner` varchar(50) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
+  `Comida1` varchar(50) NOT NULL,
+  `Comida2` varchar(50) NOT NULL,
+  `Comida3` varchar(50) NOT NULL,
+  `Comida4` varchar(50) NOT NULL,
+  `Comida5` varchar(50) NOT NULL,
+  `PreEntreno` varchar(50) NOT NULL,
+  `PostEntreno` varchar(50) NOT NULL,
   `diet_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trainings`
+-- Table structure for table `trainings`
 --
 
 CREATE TABLE `trainings` (
-  `email` varchar(50) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
   `reps` int(5) NOT NULL,
   `sets` int(5) NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE `trainings` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -67,49 +68,44 @@ CREATE TABLE `users` (
   `birthday` date DEFAULT NULL,
   `weight` int(10) DEFAULT NULL,
   `sportFrecuency` enum('NEVER','MONTHLY','WEEKLY','DAILY') NOT NULL,
-  `diet` varchar(50) DEFAULT NULL,
-  `training` varchar(50) DEFAULT NULL
+  `diet` int(11) DEFAULT NULL,
+  `training` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `diets`
+-- Indexes for table `diets`
 --
 ALTER TABLE `diets`
-  ADD PRIMARY KEY (`diet_id`),
-  ADD KEY `fk_user_email` (`email`);
+  ADD PRIMARY KEY (`diet_id`);
 
 --
--- Indices de la tabla `trainings`
+-- Indexes for table `trainings`
 --
 ALTER TABLE `trainings`
-  ADD PRIMARY KEY (`training_id`),
-  ADD KEY `fk_user_email_training` (`email`);
+  ADD PRIMARY KEY (`training_id`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`email`),
+  ADD KEY `fk_diet` (`diet`),
+  ADD KEY `fk_training` (`training`);
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `diets`
+-- Constraints for table `users`
 --
-ALTER TABLE `diets`
-  ADD CONSTRAINT `fk_user_email` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `trainings`
---
-ALTER TABLE `trainings`
-  ADD CONSTRAINT `fk_user_email_training` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_diet` FOREIGN KEY (`diet`) REFERENCES `diets` (`diet_id`),
+  ADD CONSTRAINT `fk_training` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
