@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Comprobar si algún registro fue actualizado
         if ($stmt->rowCount() > 0) {
-            echo json_encode(array("success" => true, "message" => "Usuario actualizado correctamente"));
+            echo json_encode(array("success" => true, "message" => "Dieta actualizada correctamente"));
         } else {
-            echo json_encode(array("success" => false, "message" => "No se encontró el usuario o no se necesitaban cambios en los datos"));
+            echo json_encode(array("success" => false, "message" => "No se encontró la dieta o no se necesitaban cambios en los datos"));
         }
 
     } catch (PDOException $e) {

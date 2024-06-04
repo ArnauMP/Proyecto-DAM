@@ -33,7 +33,7 @@
             $stmt->execute();
 
             // Enviar respuesta JSON en caso de éxito
-            echo json_encode(array("success" => true, "message" => "User created successfully"));
+            echo json_encode(array("success" => true, "message" => "Usuario creado correctamente"));
         } catch (PDOException $e) {
             // Enviar respuesta JSON en caso de error
             echo json_encode(array("success" => false, "message" => "Error: " . $e->getMessage()));

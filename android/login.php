@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si el usuario existe, la contraseña es correcta y el usuario está verificado
         if ($user && password_verify($password, $user['password'])) {
             if ($user['is_verified'] == 1) {
-                echo json_encode(array("success" => true, "message" => "Login successful", "name" => $user['name']));
+                echo json_encode(array("success" => true, "message" => "Inicio de sesión correcto", "name" => $user['name']));
             } else {
-                echo json_encode(array("success" => false, "message" => "Please verify your email before logging in."));
+                echo json_encode(array("success" => false, "message" => "Por favor verifica tú email antes de iniciar sesión"));
             }
         } else {
-            echo json_encode(array("success" => false, "message" => "Invalid email or password"));
+            echo json_encode(array("success" => false, "message" => "Email o contraseña inválidos"));
         }
     } catch (PDOException $e) {
         echo json_encode(array("success" => false, "message" => "Error: " . $e->getMessage()));
