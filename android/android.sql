@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 08:56 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-06-2024 a las 21:43:26
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,43 +18,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `android`
+-- Base de datos: `android`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diets`
+-- Estructura de tabla para la tabla `diets`
 --
 
 CREATE TABLE `diets` (
-  `Comida1` varchar(50) NOT NULL,
-  `Comida2` varchar(50) NOT NULL,
-  `Comida3` varchar(50) NOT NULL,
-  `Comida4` varchar(50) NOT NULL,
-  `Comida5` varchar(50) NOT NULL,
-  `PreEntreno` varchar(50) NOT NULL,
-  `PostEntreno` varchar(50) NOT NULL,
+  `meal1` varchar(50) NOT NULL,
+  `meal2` varchar(50) NOT NULL,
+  `meal3` varchar(50) NOT NULL,
+  `meal4` varchar(50) NOT NULL,
+  `meal5` varchar(50) NOT NULL,
+  `pre_workout` varchar(50) NOT NULL,
+  `post_workout` varchar(50) NOT NULL,
   `diet_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trainings`
+-- Estructura de tabla para la tabla `trainings`
 --
 
 CREATE TABLE `trainings` (
-  `name` varchar(50) NOT NULL,
-  `reps` int(5) NOT NULL,
-  `sets` int(5) NOT NULL,
+  `exercise1` varchar(50) NOT NULL,
+  `exercise2` varchar(50) NOT NULL,
+  `exercise3` varchar(50) NOT NULL,
+  `exercise4` varchar(50) NOT NULL,
+  `exercise5` varchar(50) NOT NULL,
+  `exercise6` varchar(50) NOT NULL,
   `training_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -64,7 +67,7 @@ CREATE TABLE `users` (
   `verification_code` varchar(10) NOT NULL,
   `is_verified` tinyint(1) NOT NULL,
   `telf` varchar(20) DEFAULT NULL,
-  `role` enum('ADMIN','TRAINER','VIP','USER') DEFAULT NULL,
+  `role` enum('ADMIN','TRAINER','VIP','FREE') DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `weight` int(10) DEFAULT NULL,
   `sportFrecuency` enum('NEVER','MONTHLY','WEEKLY','DAILY') NOT NULL,
@@ -73,23 +76,23 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `diets`
+-- Indices de la tabla `diets`
 --
 ALTER TABLE `diets`
   ADD PRIMARY KEY (`diet_id`);
 
 --
--- Indexes for table `trainings`
+-- Indices de la tabla `trainings`
 --
 ALTER TABLE `trainings`
   ADD PRIMARY KEY (`training_id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`email`),
@@ -97,11 +100,27 @@ ALTER TABLE `users`
   ADD KEY `fk_training` (`training`);
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- Constraints for table `users`
+-- AUTO_INCREMENT de la tabla `diets`
+--
+ALTER TABLE `diets`
+  MODIFY `diet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `trainings`
+--
+ALTER TABLE `trainings`
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `fk_diet` FOREIGN KEY (`diet`) REFERENCES `diets` (`diet_id`),
