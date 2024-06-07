@@ -14,13 +14,14 @@
         $meal5 = $_POST['meal5'];
         $pre_workout = $_POST['pre_workout'];
         $post_workout = $_POST['post_workout'];
+        $type = $_POST['type'];
 
         try {
             // Insertar datos en la base de datos
             $conexion = new PDO("mysql:host=$host;dbname=$dbname", $usuario, $contraseña);
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $conexion->prepare("INSERT INTO diets (meal1, meal2, meal3, meal4, meal5, pre_workout, post_workout) VALUES (:meal1, :meal2, :meal3, :meal4, :meal5, :pre_workout, :post_workout)");
+            $stmt = $conexion->prepare("INSERT INTO diets (meal1, meal2, meal3, meal4, meal5, pre_workout, post_workout, type) VALUES (:meal1, :meal2, :meal3, :meal4, :meal5, :pre_workout, :post_workout, :type)");
             $stmt->bindParam(':meal1', $meal1);
             $stmt->bindParam(':meal2', $meal2);
             $stmt->bindParam(':meal3', $meal3);
@@ -28,6 +29,7 @@
             $stmt->bindParam(':meal5', $meal5);
             $stmt->bindParam(':pre_workout', $pre_workout);
             $stmt->bindParam(':post_workout', $post_workout);
+            $stmt->bindParam(':type', $type);
             $stmt->execute();
 
             // Enviar respuesta JSON en caso de éxito

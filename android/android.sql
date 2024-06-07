@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2024 a las 21:43:26
+-- Tiempo de generación: 07-06-2024 a las 23:07:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,8 +35,17 @@ CREATE TABLE `diets` (
   `meal5` varchar(50) NOT NULL,
   `pre_workout` varchar(50) NOT NULL,
   `post_workout` varchar(50) NOT NULL,
-  `diet_id` int(11) NOT NULL
+  `diet_id` int(11) NOT NULL,
+  `type` enum('DEFINITION','VOLUME','NEUTRAL','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `diets`
+--
+
+INSERT INTO `diets` (`meal1`, `meal2`, `meal3`, `meal4`, `meal5`, `pre_workout`, `post_workout`, `diet_id`, `type`) VALUES
+('Bocadillo, Huevos, Plátano', 'Cereales, Kiwi, Tortilla', 'Tostadas con mermelada, pizza', 'Lentejas2', 'Hamburguesita buena', 'Yogur', 'Batidito de proteínas', 4, 'VOLUME'),
+('Bocadillo, Huevos, Plátano', 'Cereales, Kiwi, Tortilla', 'Tostadas con mermelada, pizza', 'Lentejas', 'Hamburguesita buena', 'Yogur', 'Batidito de proteínas', 5, 'DEFINITION');
 
 -- --------------------------------------------------------
 
@@ -51,8 +60,17 @@ CREATE TABLE `trainings` (
   `exercise4` varchar(50) NOT NULL,
   `exercise5` varchar(50) NOT NULL,
   `exercise6` varchar(50) NOT NULL,
-  `training_id` int(11) NOT NULL
+  `training_id` int(11) NOT NULL,
+  `type` enum('HYPERTROPHY','STRENGTH','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `trainings`
+--
+
+INSERT INTO `trainings` (`exercise1`, `exercise2`, `exercise3`, `exercise4`, `exercise5`, `exercise6`, `training_id`, `type`) VALUES
+('sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x4 reps', 2, 'HYPERTROPHY'),
+('sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 'sentadilla 15x3 reps', 3, 'STRENGTH');
 
 -- --------------------------------------------------------
 
@@ -74,6 +92,14 @@ CREATE TABLE `users` (
   `diet` int(11) DEFAULT NULL,
   `training` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`name`, `password`, `email`, `verification_code`, `is_verified`, `telf`, `role`, `birthday`, `weight`, `sportFrecuency`, `diet`, `training`) VALUES
+('Arnau', '1234', 'ejemplo2@gmail.com', '1234', 1, '1234568789', 'VIP', '0000-00-00', 50, 'DAILY', NULL, NULL),
+('Arnau', '1234', 'ejemplo@gmail.com', '1234', 1, '1234568789', 'VIP', '0000-00-00', 50, 'DAILY', 4, 2);
 
 --
 -- Índices para tablas volcadas
@@ -107,13 +133,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `diets`
 --
 ALTER TABLE `diets`
-  MODIFY `diet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `diet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

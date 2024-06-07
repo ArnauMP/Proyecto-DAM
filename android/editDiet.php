@@ -1,40 +1,44 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $host = 'localhost';
-    $dbname = 'android';
-    $usuario = 'root';
-    $contraseña = '';
 
-    // Parámetros recibidos por POST
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+        $host = 'localhost';
+        $dbname = 'android';
+        $usuario = 'root';
+        $contraseña = '';
 
-    try {
-        // Conectar a la base de datos
-        $conexion = new PDO("mysql:host=$host;dbname=$dbname", $usuario, $contraseña);
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $meal1 = $_POST['meal1'];
+        $meal2 = $_POST['meal2'];
+        $meal3 = $_POST['meal3'];
+        $meal4 = $_POST['meal4'];
+        $meal5 = $_POST['meal5'];
+        $pre_workout = $_POST['pre_workout'];
+        $post_workout = $_POST['post_workout'];
+        $type = $_POST['type'];
+        $diet_id = $_POST['diet_id'];
 
-        // Preparar la consulta SQL para actualizar dieta
-        $query = "UPDATE users SET diet = :diet WHERE email = :email";
-        $stmt = $conexion->prepare($query);
+        try {
+            // Insertar datos en la base de datos
+            $conexion = new PDO("mysql:host=$host;dbname=$dbname", $usuario, $contraseña);
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        if (!empty($email)) {
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':diet', $diet);
-        }
+            $stmt = $conexion->prepare("UPDATE diets SET meal1 = :meal1, meal2 = :meal2, meal3 = :meal3, meal4 = :meal4, meal5 = :meal5, pre_workout = :pre_workout, post_workout = :post_workout, type = :type WHERE diet_id = :diet_id");
+            $stmt->bindParam(':meal1', $meal1);
+            $stmt->bindParam(':meal2', $meal2);
+            $stmt->bindParam(':meal3', $meal3);
+            $stmt->bindParam(':meal4', $meal4);
+            $stmt->bindParam(':meal5', $meal5);
+            $stmt->bindParam(':pre_workout', $pre_workout);
+            $stmt->bindParam(':post_workout', $post_workout);
+            $stmt->bindParam(':type', $type);
+            $stmt->bindParam(':diet_id', $diet_id);
+            $stmt->execute();
 
-        // Ejecutar la consulta
-        $stmt->execute();
-
-        // Comprobar si algún registro fue actualizado
-        if ($stmt->rowCount() > 0) {
+            // Enviar respuesta JSON en caso de éxito
             echo json_encode(array("success" => true, "message" => "Dieta actualizada correctamente"));
-        } else {
-            echo json_encode(array("success" => false, "message" => "No se encontró la dieta o no se necesitaban cambios en los datos"));
+        } catch (PDOException $e) {
+            // Enviar respuesta JSON en caso de error
+            echo json_encode(array("success" => false, "message" => "Error: " . $e->getMessage()));
         }
-
-    } catch (PDOException $e) {
-        echo json_encode(array("success" => false, "message" => "Error: " . $e->getMessage()));
     }
-}
 ?>
