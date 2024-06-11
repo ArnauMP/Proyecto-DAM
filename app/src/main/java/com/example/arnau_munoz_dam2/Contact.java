@@ -2,6 +2,7 @@ package com.example.arnau_munoz_dam2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 public class Contact extends AppCompatActivity {
 
-    EditText etUsername, etEmail, etTelf, etSubject, etMessage;
+    EditText etTelf, etSubject, etMessage;
     RequestQueue requestQueue;
 
     @Override
@@ -32,10 +33,12 @@ public class Contact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
+        Intent intent = getIntent();
+        String savedEmail = intent.getStringExtra("savedEmail");
+        String savedUsername = intent.getStringExtra("savedUsername");
+
         Button sendContactBtn = findViewById(R.id.sencContactBtn);
 
-        etUsername = findViewById(R.id.etUsername);
-        etEmail = findViewById(R.id.etEmail);
         etTelf = findViewById(R.id.etTelf);
         etSubject = findViewById(R.id.etSubject);
         etMessage = findViewById(R.id.etMessage);
@@ -44,14 +47,12 @@ public class Contact extends AppCompatActivity {
         sendContactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = etUsername.getText().toString();
-                String email = etEmail.getText().toString();
                 String telf = etTelf.getText().toString();
                 String subject = etSubject.getText().toString();
                 String message = etMessage.getText().toString();
 
-                if (!username.isEmpty() && !email.isEmpty() && !telf.isEmpty() && !subject.isEmpty()) {
-                    sendContact(username, email, telf, subject, message);
+                if (!savedUsername.isEmpty() && !savedEmail.isEmpty() && !telf.isEmpty() && !subject.isEmpty()) {
+                    sendContact(savedUsername, savedEmail, telf, subject, message);
                 } else {
                     Toast.makeText(Contact.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
                 }
@@ -94,7 +95,7 @@ public class Contact extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("username", username);
+                    params.put("name", username);
                     params.put("email", email);
                     params.put("telf", telf);
                     params.put("subject", subject);

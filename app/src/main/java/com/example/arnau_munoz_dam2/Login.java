@@ -85,8 +85,9 @@ public class Login extends AppCompatActivity {
 
                             if (success) {
                                 String name = jsonResponse.getString("name");
-                                Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(Login.this, Home.class);
+                                intent.putExtra("savedEmail", email);
+                                intent.putExtra("savedUsername", name);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
