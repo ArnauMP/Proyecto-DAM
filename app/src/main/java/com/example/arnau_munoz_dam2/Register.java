@@ -33,8 +33,6 @@ public class Register extends AppCompatActivity {
     EditText etName, etPassword, etPassword2, etEmail;
     RequestQueue requestQueue;
 
-    private static final String URL1 = "http://192.168.1.139/android/register.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,58 +67,55 @@ public class Register extends AppCompatActivity {
                 } else {
                     Toast.makeText(Register.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
             private void createUser(String name, String password, String email) {
-                String URL1 = "http://192.168.1.139/android/register.php";
+                    String URL1 = "http://192.168.1.139/android/register.php";
 
-                StringRequest stringRequest = new StringRequest(
-                        Request.Method.POST,
-                        URL1,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jsonResponse = new JSONObject(response);
-                                    boolean success = jsonResponse.getBoolean("success");
-                                    String message = jsonResponse.getString("message");
+                    StringRequest stringRequest = new StringRequest(
+                            Request.Method.POST,
+                            URL1,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        JSONObject jsonResponse = new JSONObject(response);
+                                        boolean success = jsonResponse.getBoolean("success");
+                                        String message = jsonResponse.getString("message");
 
-                                    if (success) {
-                                        Toast.makeText(Register.this, "Correcto: " + message, Toast.LENGTH_SHORT).show();
-                                        // Realizar alguna acción adicional si es necesario
-                                        showVerificationDialog(email);
+                                        if (success) {
+                                            Toast.makeText(Register.this, "Correcto: " + message, Toast.LENGTH_SHORT).show();
+                                            // Realizar alguna acción adicional si es necesario
+                                            showVerificationDialog(email);
 
-                                    } else {
-                                        Toast.makeText(Register.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(Register.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(Register.this, "Error en la respuesta JSON", Toast.LENGTH_SHORT).show();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(Register.this, "Error en la respuesta JSON", Toast.LENGTH_SHORT).show();
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(Register.this, "Error de red", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Register.this, "Error de red", Toast.LENGTH_SHORT).show();
-                            }
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("name", name);
+                            params.put("password", password);
+                            params.put("email", email);
+                            return params;
                         }
-                ) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("name", name);
-                        params.put("password", password);
-                        params.put("email", email);
-                        return params;
-                    }
-                };
+                    };
 
-                // Obtener el contexto correcto para RequestQueue
-                RequestQueue requestQueue = Volley.newRequestQueue(Register.this);
-                requestQueue.add(stringRequest);
+                    // Obtener el contexto correcto para RequestQueue
+                    RequestQueue requestQueue = Volley.newRequestQueue(Register.this);
+                    requestQueue.add(stringRequest);
             }
         });
 

@@ -16,11 +16,20 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Button vipButton = findViewById(R.id.vipButton);
+        Button contactButton = findViewById(R.id.contactButton);
 
         vipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Vip.class);
+                startActivity(intent);
+            }
+        });
+
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, Contact.class);
                 startActivity(intent);
             }
         });
