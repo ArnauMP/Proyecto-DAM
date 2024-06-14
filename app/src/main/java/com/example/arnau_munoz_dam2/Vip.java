@@ -95,7 +95,7 @@ public class Vip extends AppCompatActivity {
         });
     }
     private void makeVip(String telf, String birthday, String weight, String selectedItem, String email) {
-        String URL1 = "http://192.168.1.139/android/vip.php";
+        String URL1 = "http://192.168.56.1/android/vip.php";
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,

@@ -59,7 +59,7 @@ public class User extends AppCompatActivity {
     }
 
     private void getUserData(String email) {
-        String URL1 = "http://192.168.1.139/android/getUserByEmail.php?email=" + email;
+        String URL1 = "http://192.168.56.1/android/getUserByEmail.php?email=" + email;
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 URL1,

@@ -92,7 +92,7 @@ public class Trainer extends AppCompatActivity {
     }
 
     private void getAllDiets() {
-        String URL1 = "http://192.168.1.139/android/getAllDiets.php";
+        String URL1 = "http://192.168.56.1/android/getAllDiets.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 URL1,
@@ -152,7 +152,7 @@ public class Trainer extends AppCompatActivity {
     }
 
     private void getAllTrainings() {
-        String URL1 = "http://192.168.1.139/android/getAllTrainings.php";
+        String URL1 = "http://192.168.56.1/android/getAllTrainings.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 URL1,
@@ -211,7 +211,7 @@ public class Trainer extends AppCompatActivity {
     }
 
     private void getDietsByType(String type) {
-        String URL1 = "http://192.168.1.139/android/getDietsByType.php?type="+ type;
+        String URL1 = "http://192.168.56.1/android/getDietsByType.php?type="+ type;
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 URL1,
@@ -271,7 +271,7 @@ public class Trainer extends AppCompatActivity {
     }
 
     private void getTrainingsByType(String type) {
-        String URL1 = "http://192.168.1.139/android/getTrainingsByType.php?type=" + type;
+        String URL1 = "http://192.168.56.1/android/getTrainingsByType.php?type=" + type;
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 URL1,

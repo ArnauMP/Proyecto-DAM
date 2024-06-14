@@ -61,7 +61,7 @@ public class Contact extends AppCompatActivity {
     }
 
         private void sendContact(String username, String email, String telf, String subject, String message) {
-            String URL1 = "http://192.168.1.139/android/contactForm.php";
+            String URL1 = "http://192.168.56.1/android/contactForm.php";
 
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,

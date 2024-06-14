@@ -69,7 +69,7 @@ public class Register extends AppCompatActivity {
                 }
             }
             private void createUser(String name, String password, String email) {
-                    String URL1 = "http://192.168.1.139/android/register.php";
+                    String URL1 = "http://192.168.56.1/android/register.php";
 
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.POST,
@@ -84,7 +84,6 @@ public class Register extends AppCompatActivity {
 
                                         if (success) {
                                             Toast.makeText(Register.this, "Correcto: " + message, Toast.LENGTH_SHORT).show();
-                                            // Realizar alguna acción adicional si es necesario
                                             showVerificationDialog(email);
 
                                         } else {
@@ -113,7 +112,6 @@ public class Register extends AppCompatActivity {
                         }
                     };
 
-                    // Obtener el contexto correcto para RequestQueue
                     RequestQueue requestQueue = Volley.newRequestQueue(Register.this);
                     requestQueue.add(stringRequest);
             }
@@ -157,7 +155,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void verifyCode(final String email, String verificationCode) {
-        String URL = "http://192.168.1.139/android/verify.php";
+        String URL = "http://192.168.56.1/android/verify.php";
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -173,7 +171,6 @@ public class Register extends AppCompatActivity {
                             Toast.makeText(Register.this, message, Toast.LENGTH_LONG).show();
 
                             if (success) {
-                                // Redirigir al usuario a la pantalla de inicio de sesión o página principal
                                 Intent intent = new Intent(Register.this, Login.class);
                                 startActivity(intent);
                                 finish();
@@ -201,7 +198,6 @@ public class Register extends AppCompatActivity {
             }
         };
 
-        // Obtener el contexto correcto para RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

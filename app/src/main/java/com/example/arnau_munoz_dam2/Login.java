@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
 
     private void login(String email, String password){
 
-        String URL = "http://192.168.1.139/android/login.php";
+        String URL = "http://192.168.56.1/android/login.php";
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
