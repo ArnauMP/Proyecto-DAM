@@ -65,3 +65,33 @@ function sendContactEmail($name, $email, $telf, $subject, $message){
         return false;
     }
 }
+
+function sendForgotPassword($email){
+    $mail = new PHPMailer(true);
+
+    try{
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'kwt4122003@gmail.com'; // Your gmail
+        $mail->Password = 'ilelwxnmiefqirqu'; // Your gmail app password
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+        
+        $mail->setFrom('kwt4122003@gmail.com');
+        
+        $mail->addAddress($email);
+        
+        $mail->isHTML(true);
+        
+        $mail->Subject = "Change Password";
+        $mail->Body = "Si quieres cambiar de contraseña, haz click en este enlace: http://www.hastaloshuevos.es";
+        
+        $mail->send();
+        return true;
+    }
+    catch (Exception $e){
+        return false;
+    }
+}

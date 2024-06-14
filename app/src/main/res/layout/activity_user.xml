@@ -98,7 +98,6 @@
         android:id="@+id/nameTv"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:text="awdaw"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toTopOf="@+id/textView17" />

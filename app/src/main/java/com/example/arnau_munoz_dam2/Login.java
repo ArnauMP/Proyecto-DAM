@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.w3c.dom.Text;
 
 public class Login extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView registerButton = findViewById(R.id.registerTextView);
+        TextView forgotPassword = findViewById(R.id.forgotPasswordTv);
         Button loginButton = findViewById(R.id.loginButton);
 
         etEmail = findViewById(R.id.etEmail);
@@ -60,6 +62,14 @@ public class Login extends AppCompatActivity {
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, Register.class);
