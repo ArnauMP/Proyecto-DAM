@@ -86,7 +86,7 @@ function sendForgotPassword($email){
         $mail->isHTML(true);
         
         $mail->Subject = "Change Password";
-        $mail->Body = "Si quieres cambiar de contraseña, haz click en este enlace: http://www.hastaloshuevos.es";
+        $mail->Body = "Si quieres cambiar de contraseña, haz click en este enlace: http://kwt:8080/ChangePasswd";
         
         $mail->send();
         return true;

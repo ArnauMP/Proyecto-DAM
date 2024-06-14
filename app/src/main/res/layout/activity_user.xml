@@ -115,6 +115,7 @@
         android:id="@+id/trainerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Ir al menú de entrenador"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/roleTv"

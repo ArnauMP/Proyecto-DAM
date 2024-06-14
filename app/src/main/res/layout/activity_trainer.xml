@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Dietas"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -31,6 +32,7 @@
         android:id="@+id/getTrainingsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Rutinas"
         app:layout_constraintEnd_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/getDietsBtn" />
@@ -40,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Filtro tipo 1"
         app:layout_constraintEnd_toEndOf="@+id/getDietsBtn"
         app:layout_constraintStart_toStartOf="@+id/getDietsBtn"
@@ -50,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:text="Filtro tipo 2"
         app:layout_constraintEnd_toEndOf="@+id/getTrainingsBtn"
         app:layout_constraintStart_toStartOf="@+id/getTrainingsBtn"
